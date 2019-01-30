@@ -12,28 +12,101 @@
     </properties>
     <dependencies>
         <!-- https://mvnrepository.com/artifact/de.jflex/jflex -->
-<dependency>
-    <groupId>de.jflex</groupId>
-    <artifactId>jflex</artifactId>
-    <version>1.7.0</version>
-</dependency>
+        <dependency>
+            <groupId>de.jflex</groupId>
+            <artifactId>jflex</artifactId>
+            <version>1.7.0</version>
+        </dependency>
 
     </dependencies>
+    
+    <pluginRepositories>
+        <pluginRepository>
+            <id>1</id>
+            <url>https://oss.sonatype.org/content/repositories/releases/</url>
+        </pluginRepository>
+        <pluginRepository>
+            <id>2</id>
+            <url>http://central.maven.org/maven2/</url>
+        </pluginRepository>   
+        <pluginRepository>
+            <id>3</id>
+            <url>http://maven.ibiblio.org/maven2/</url>
+        </pluginRepository> 
+        <pluginRepository>
+            <id>4</id>
+            <url>http://repo.spring.io/libs-milestone/</url>
+        </pluginRepository> 
+        <pluginRepository>
+            <id>5</id>
+            <url>http://repo.spring.io/plugins-release/</url>
+        </pluginRepository>    
+        <pluginRepository>
+            <id>6</id>
+            <url>https://repo1.maven.org/maven2/</url>
+        </pluginRepository>                     
+    </pluginRepositories>
+    
+    <repositories>
+        <repository>
+            <id>1</id>
+            <url>https://oss.sonatype.org/content/repositories/releases/</url>
+        </repository>
+        <repository>
+            <id>2</id>
+            <url>http://central.maven.org/maven2/</url>
+        </repository>               
+        <repository>
+            <id>3</id>
+            <url>http://maven.ibiblio.org/maven2/</url>
+        </repository> 
+        <repository>
+            <id>4</id>
+            <url>http://repo.spring.io/libs-milestone/</url>
+        </repository> 
+        <repository>
+            <id>5</id>
+            <url>http://repo.spring.io/plugins-release/</url>
+        </repository>             
+        <repository>
+            <id>6</id>
+            <url>https://repo1.maven.org/maven2/</url>
+        </repository>                 
+    </repositories>
 
-<build>
-    <plugins>
-      <plugin>
-        <groupId>de.jflex</groupId>
-        <artifactId>jflex-maven-plugin</artifactId>
-        <version>1.7.0</version>
-        <executions>
-          <execution>
-            <goals>
-              <goal>generate</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-    </plugins>
-    <!-- ... -->
-  </build></project>
+    <build>
+        <plugins>      
+        
+            <plugin>
+                <groupId>de.jflex</groupId>
+                <artifactId>jflex-maven-plugin</artifactId>
+                <version>1.7.0</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            
+            <plugin>
+                <groupId>com.github.vbmacher</groupId>
+                <artifactId>cup-maven-plugin</artifactId>
+                <version>11b-20160615</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <packageName>generadocup</packageName>
+                </configuration>
+            </plugin> 
+                        
+        </plugins>
+
+    </build>
+</project>

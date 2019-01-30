@@ -1,70 +1,36 @@
-/* The consists of three parts, seperated by the %% delimiter.
- * Text up to the first %% is copied verbatim into the created source file.
- * Used for package and import statements. (we don't need any here)
- */
+import java_cup.runtime.Symbol;
+
+%%  
+%eofval{
+  { System.exit(0); }
+%eofval}
+%cup
+%line
+%char
+%state COMENTARIO
+NUMBER = [1-9][0-9]*
 %%
+/*
+* Uno de los cambios más importantes es  que ahora usamos return, que esto lo que hace es
+* retornar y enviar el token a nuestro analizador léxico.  En este caso retornaremos un
+* no terminal por medio de la función Symbol
+*/
 
-/* The next section is for options and macros. Things defined here can be used
- * in the next rules section.
- */
-
-/* The class will be called GeneratedLexer */
-%class GeneratedLexer
-
-/* The yylex() method will return an instance of Token */
-%type Token
-
-/* The yylex() method will throw a LexicalException */
-%scanerror Exception
-
-%unicode
-
-/* Code in the next section is copied into the generated lexer class.
- */
-%{
-%}
-
-/* Here we define some macros, which are abbriviations for regular expressions.
- */
-
-LineTerminator = \r|\n|\r\n
-WhiteSpace     = {LineTerminator} | [ \t\f]
-
-/* NOT VALID ASSIGNEMNT IDENTIFIERS!!!! CHANGE ME!!!! */
-Identifier = [:jletter:] [:jletterdigit:]*
-
-DecIntegerLiteral = [0-9]
-
-%state STRING
-
-%%
-
-/* Now we define keywords in our grammer
- * When the input string matches the regex on the left the action on the right
- * is performed. The action is java code. The regex matches longest match by
- * default. The lexer starts in the <YYINITIAL> state.
- */
-
-<YYINITIAL> "if"                 { return new T_If(); }
-<YYINITIAL> "then"               { return new T_Then(); }
-<YYINITIAL> "else"               { return new T_Else(); }
-
-<YYINITIAL> {
-  /* identifiers */ 
-  {Identifier}                   { return new T_Identifier(yytext()); }
-  /* use a macro to match integers */
-  {DecIntegerLiteral}            { return new T_Integer(Integer.parseInt(yytext())); }
-
-  /* operators */
-  "=="                           { return new T_Equal(); }
-  "="                            { return new T_EqualDefines(); }
-  "+"                            { return new T_Plus(); }
-  ";"                            { return new T_Semicolon(); }
-
-  /* whitespace */
-  {WhiteSpace}                   { /* ignore */ }
-}
-
-/* error fallback */
-[^]                              { throw new Exception("Illegal character <" +
-                                                    yytext() + ">"); }
+/* En la siguiente línea, además de pasar el no terminal NUMERO a cup, pasamos un valor
+   entero, que es el valor numérico de nuestra entrada  */
+<YYINITIAL> {NUMBER} { return new Symbol(sym.NUMERO, new Integer(yytext())); }
+<YYINITIAL> "+" { return new Symbol(sym.MAS); }
+<YYINITIAL> "-" { return new Symbol(sym.MENOS); }
+<YYINITIAL> "*" { return new Symbol(sym.POR); }
+<YYINITIAL> "/" { return new Symbol(sym.DIV); }
+<YYINITIAL> "(" { return new Symbol(sym.PARI); }
+<YYINITIAL> ")" { return new Symbol(sym.PARD); }
+<YYINITIAL> ";" { return new Symbol(sym.FIN); }
+<YYINITIAL> " " {}
+<YYINITIAL>  [\t\r\n\f] {}
+<YYINITIAL> "//" {yybegin(COMENTARIO);}
+<COMENTARIO> [^\n] {}
+<COMENTARIO> [\n] {yybegin(YYINITIAL); yychar=0;}
+<COMENTARIO> .|\n {if(!(yytext().equals("\n")))
+                                                                              System.out.println("error lexico en "  + yyline + "," + yychar + " No se reconoce " + yytext());
+                                                               yychar=0; }
