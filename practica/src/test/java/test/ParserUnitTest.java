@@ -7,6 +7,7 @@ package test;
 
 import ant.com.gt.Principal;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 /**
@@ -15,11 +16,16 @@ import org.junit.Test;
  */
 public class ParserUnitTest {
     
-    Principal p = new Principal();
+    private Principal principal; 
+    
+    @Before
+    public void setup() {
+        principal = new Principal();
+    }
     
     @Test
-    public void testParser() throws Exception {
-        String parsearArchivo = p.parsearArchivo("archivos_prueba/archivo_prueba.txt");
+    public void testParser() {
+        String parsearArchivo = principal.parsearArchivo("archivos_prueba/archivo_prueba.txt");
         Assert.assertEquals("OK", parsearArchivo);
     }        
 }

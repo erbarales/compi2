@@ -1,5 +1,6 @@
 /* Importamos las clases necesarias del paquete cup.jar */
 import java_cup.runtime.*;
+import ant.com.gt.NewClass;
 
 /**
 * Aquí ponemos el código que se usará para comenzar a parsear la entrada.
@@ -40,13 +41,14 @@ precedence left DIV;
 * Estas dos reglas son nuevas. Nos sirven para encadenar varias
 * expresiones separadas por un ';'
 */
-expr_list ::= expr_list expr_part | expr_part
+expr_list ::= expr_list expr_part 
+            | expr_part:e {: System.out.println("Arriba = "+e); :}
                     ;
 /*
 *Al  hacer "expr_e:e", podemos usar esta "e" para realizar cualquier operacion
 * ya que cup guarda el valor que trae expr_e en la variable e, en este caso un numero.
 */
-expr_part ::= expr_e:e {: System.out.println("chino = "+e); :} FIN
+expr_part ::= expr_e:e {: System.out.println("Resultado = "+e); RESULT= new NewClass("Hola", 1); :} FIN
                     ;
 /*
 * Como nos damos cuenta en las siguientes lineas, podemos realizar las operaciones

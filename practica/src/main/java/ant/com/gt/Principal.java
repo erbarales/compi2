@@ -21,7 +21,7 @@ public class Principal {
     
     private final static Logger logger = LoggerFactory.getLogger(Principal.class);
 
-    public String parsearArchivo(String archivo) throws Exception {
+    public String parsearArchivo(String archivo) {
         try (Reader reader = new FileReader(archivo)){
             Scanner s = new Yylex(reader);
             parser analizador = new parser(s);  
