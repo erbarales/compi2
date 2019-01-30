@@ -1,10 +1,11 @@
+package generadojflex;
+
 import java_cup.runtime.Symbol;
+import generadocup.sym;
 
 %%  
-%eofval{
-  { System.exit(0); }
-%eofval}
 %cup
+%public
 %line
 %char
 %state COMENTARIO

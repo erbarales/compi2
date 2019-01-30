@@ -5,11 +5,7 @@ import java_cup.runtime.*;
 * Aquí ponemos el código que se usará para comenzar a parsear la entrada.
 */
 parser code {:
-public static void main(String args[]) throws Exception {
-// La clase Yylex es creada por el analizador léxico
 
-new parser(new Yylex(System.in)).parse();
-}
 :}
 /* Aquí especificamos los terminales del lenguaje. */
 terminal MAS, MENOS, POR, DIV, PARI, PARD, FIN;
@@ -50,7 +46,7 @@ expr_list ::= expr_list expr_part | expr_part
 *Al  hacer "expr_e:e", podemos usar esta "e" para realizar cualquier operacion
 * ya que cup guarda el valor que trae expr_e en la variable e, en este caso un numero.
 */
-expr_part ::= expr_e:e {: System.out.println("= "+e); :} FIN
+expr_part ::= expr_e:e {: System.out.println("chino = "+e); :} FIN
                     ;
 /*
 * Como nos damos cuenta en las siguientes lineas, podemos realizar las operaciones
