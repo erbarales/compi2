@@ -1,0 +1,25 @@
+package generadojflex;
+
+import java_cup.runtime.Symbol;
+import generadocup.sym;
+
+%%  
+%cup
+%public
+%line
+%char
+ID = [a-z][A-Z]*
+%%
+
+<YYINITIAL> {ID} { return new Symbol(sym.ID, yytext()); }
+
+<YYINITIAL> "{" { return new Symbol(sym.ABRE); }
+<YYINITIAL> "}" { return new Symbol(sym.CIERRA); }
+<YYINITIAL> ";" { return new Symbol(sym.FIN); }
+
+<YYINITIAL> "int" { return new Symbol(sym.INT); }
+<YYINITIAL> "char" { return new Symbol(sym.CHAR); }
+<YYINITIAL> "bool" { return new Symbol(sym.BOOL); }
+
+<YYINITIAL> " " {}
+<YYINITIAL>  [\t\r\n\f] {}

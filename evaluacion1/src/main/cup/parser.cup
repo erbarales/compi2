@@ -1,0 +1,32 @@
+import java_cup.runtime.*;
+import ant.com.gt.*;
+
+parser code {:
+    
+    TablaSimbolos tabla = new TablaSimbolos();   
+    int ambito = -1; 
+
+:}
+terminal ABRE,CIERRA,FIN,INT,CHAR,BOOL;
+
+terminal String ID;
+
+non terminal Ins, L, B;
+
+non terminal Tipo T;
+
+B ::= ABRE {: ambito++; :} L CIERRA {: tabla.imprimirEntorno(ambito); ambito--; :}
+    ;
+
+L ::= L Ins
+    | Ins  
+    ;
+
+Ins ::= T:t ID:id FIN {: tabla.agregar( new Simbolo(ambito, t, id) ); :}
+      | B
+      ;
+
+T ::= INT {: RESULT=Tipo.INT; :}
+    | CHAR {: RESULT=Tipo.CHAR; :}
+    | BOOL {: RESULT=Tipo.BOOL; :}
+    ;

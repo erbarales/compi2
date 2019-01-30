@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.mycompany</groupId>
+    <artifactId>evaluacion1</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+    </properties>
+    <dependencies>
+        <dependency>
+            <groupId>com.github.vbmacher</groupId>
+            <artifactId>java-cup</artifactId>
+            <version>11b-20160615</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/junit/junit -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-simple -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>1.7.25</version>
+        </dependency>
+
+    </dependencies>
+    
+    <pluginRepositories>
+        <pluginRepository>
+            <id>1</id>
+            <url>https://oss.sonatype.org/content/repositories/releases/</url>
+        </pluginRepository>
+        <pluginRepository>
+            <id>2</id>
+            <url>http://central.maven.org/maven2/</url>
+        </pluginRepository>   
+        <pluginRepository>
+            <id>3</id>
+            <url>http://maven.ibiblio.org/maven2/</url>
+        </pluginRepository> 
+        <pluginRepository>
+            <id>4</id>
+            <url>http://repo.spring.io/libs-milestone/</url>
+        </pluginRepository> 
+        <pluginRepository>
+            <id>5</id>
+            <url>http://repo.spring.io/plugins-release/</url>
+        </pluginRepository>    
+        <pluginRepository>
+            <id>6</id>
+            <url>https://repo1.maven.org/maven2/</url>
+        </pluginRepository>                     
+    </pluginRepositories>
+    
+    <repositories>
+        <repository>
+            <id>1</id>
+            <url>https://oss.sonatype.org/content/repositories/releases/</url>
+        </repository>
+        <repository>
+            <id>2</id>
+            <url>http://central.maven.org/maven2/</url>
+        </repository>               
+        <repository>
+            <id>3</id>
+            <url>http://maven.ibiblio.org/maven2/</url>
+        </repository> 
+        <repository>
+            <id>4</id>
+            <url>http://repo.spring.io/libs-milestone/</url>
+        </repository> 
+        <repository>
+            <id>5</id>
+            <url>http://repo.spring.io/plugins-release/</url>
+        </repository>             
+        <repository>
+            <id>6</id>
+            <url>https://repo1.maven.org/maven2/</url>
+        </repository>                 
+    </repositories>
+
+    <build>
+        <plugins>      
+        
+            <plugin>
+                <groupId>de.jflex</groupId>
+                <artifactId>jflex-maven-plugin</artifactId>
+                <version>1.7.0</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            
+            <plugin>
+                <groupId>com.github.vbmacher</groupId>
+                <artifactId>cup-maven-plugin</artifactId>
+                <version>11b-20160615</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <packageName>generadocup</packageName>
+                </configuration>
+            </plugin> 
+                        
+        </plugins>
+
+    </build>
+</project>
