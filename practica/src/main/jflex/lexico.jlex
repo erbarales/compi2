@@ -11,14 +11,7 @@ import generadocup.sym;
 %state COMENTARIO
 NUMBER = [1-9][0-9]*
 %%
-/*
-* Uno de los cambios más importantes es  que ahora usamos return, que esto lo que hace es
-* retornar y enviar el token a nuestro analizador léxico.  En este caso retornaremos un
-* no terminal por medio de la función Symbol
-*/
 
-/* En la siguiente línea, además de pasar el no terminal NUMERO a cup, pasamos un valor
-   entero, que es el valor numérico de nuestra entrada  */
 <YYINITIAL> {NUMBER} { return new Symbol(sym.NUMERO, new Integer(yytext())); }
 <YYINITIAL> "+" { return new Symbol(sym.MAS); }
 <YYINITIAL> "-" { return new Symbol(sym.MENOS); }
@@ -33,5 +26,5 @@ NUMBER = [1-9][0-9]*
 <COMENTARIO> [^\n] {}
 <COMENTARIO> [\n] {yybegin(YYINITIAL); yychar=0;}
 <COMENTARIO> .|\n {if(!(yytext().equals("\n")))
-                                                                              System.out.println("error lexico en "  + yyline + "," + yychar + " No se reconoce " + yytext());
-                                                               yychar=0; }
+                   System.out.println("error lexico en "  + yyline + "," + yychar + " No se reconoce " + yytext());
+                   yychar=0; }
