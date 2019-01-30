@@ -1,5 +1,5 @@
 import java_cup.runtime.*;
-import ant.com.gt.NewClass;
+import ant.com.gt.CodigoPersonalizado;
 
 parser code {:
 
@@ -22,10 +22,10 @@ precedence left POR;
 precedence left DIV;
 
 expr_list ::= expr_list expr_part 
-            | expr_part:e {: System.out.println("Arriba = "+e); :}
+            | expr_part:e {: System.out.println("Prueba de valores acarreados = "+e); :}
                     ;
 
-expr_part ::= expr_e:e {: System.out.println("Resultado = "+e); RESULT= new NewClass("Hola", 1); :} FIN
+expr_part ::= expr_e:e {: System.out.println("Resultado = "+e); RESULT= new CodigoPersonalizado("Hola", 1); :} FIN
                     ;
 expr_e ::= expr_e:l MAS expr_t:r {: RESULT=new Integer(l.intValue() + r.intValue()); :}
                   | expr_t:e {: RESULT=e; :}
