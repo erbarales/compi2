@@ -1,0 +1,20 @@
+package generadojflex;
+
+import java_cup.runtime.Symbol;
+import generadocup.sym;
+
+%%  
+%cup
+%public
+%line
+%char
+NUMBER = [0-9]+
+%%
+
+<YYINITIAL> {NUMBER} { return new Symbol(sym.NUMBER, yytext()); }
+
+<YYINITIAL> "+" { return new Symbol(sym.MAS); }
+<YYINITIAL> "*" { return new Symbol(sym.POR); }
+
+<YYINITIAL> " " {}
+<YYINITIAL>  [\t\r\n\f] {}

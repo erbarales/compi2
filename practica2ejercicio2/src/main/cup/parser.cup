@@ -1,0 +1,25 @@
+import java_cup.runtime.*;
+import ant.com.gt.*;
+
+parser code {:
+    
+
+:}
+terminal MAS, POR;
+
+terminal String NUMBER;
+
+non terminal S;
+
+non terminal Nodo E;
+
+precedence left MAS;
+precedence left POR;
+
+S ::= E
+    ;
+
+E ::= E MAS E
+   | E POR E
+   | NUMBER {: RESULT= new Nodo("num"); :}
+   ;
