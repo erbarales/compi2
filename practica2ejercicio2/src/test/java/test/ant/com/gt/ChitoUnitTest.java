@@ -1,5 +1,6 @@
 package test.ant.com.gt;
 
+import ant.com.gt.Nodo;
 import com.mxgraph.layout.mxCircleLayout;
 import com.mxgraph.layout.mxIGraphLayout;
 import com.mxgraph.util.mxCellRenderer;
@@ -27,29 +28,30 @@ public class ChitoUnitTest {
 
     @Test
     public void chito() throws IOException {
-        File imgFile = new File("src/test/resources/graph.png");
-        imgFile.createNewFile();
-
-        DefaultDirectedGraph<String, DefaultEdge> g
+        DefaultDirectedGraph<Nodo, DefaultEdge> g
                 = new DefaultDirectedGraph<>(DefaultEdge.class);
 
-        String x1 = "x1";
-        String x2 = "x2";
-        String x3 = "x3";
+        Nodo nodoS = new Nodo("S");
+        Nodo nodoE1= new Nodo("E");
+        Nodo nodoE2= new Nodo("E");
+        Nodo nodoMas= new Nodo("+");
 
-        g.addVertex(x1);
-        g.addVertex(x2);
-        g.addVertex(x3);
+        g.addVertex(nodoS);
+        g.addVertex(nodoE1);
+        g.addVertex(nodoE2);
+        g.addVertex(nodoMas);
 
-        g.addEdge(x1, x2);
-        g.addEdge(x2, x3);
-        g.addEdge(x3, x1);
+        g.addEdge(nodoS, nodoE1);
+        g.addEdge(nodoS, nodoMas);
+        g.addEdge(nodoS, nodoE2);
 
-        JGraphXAdapter<String, DefaultEdge> graphAdapter
-                = new JGraphXAdapter<String, DefaultEdge>(g);
+        JGraphXAdapter<Nodo, DefaultEdge> graphAdapter
+                = new JGraphXAdapter<>(g);
         mxIGraphLayout layout = new mxCircleLayout(graphAdapter);
         layout.execute(graphAdapter.getDefaultParent());
 
+        File imgFile = new File("src/test/resources/graph.png");
+        imgFile.createNewFile();
         BufferedImage image
                 = mxCellRenderer.createBufferedImage(graphAdapter, null, 2, Color.WHITE, true, null);
         ImageIO.write(image, "PNG", imgFile);

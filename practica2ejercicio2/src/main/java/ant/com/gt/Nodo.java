@@ -16,5 +16,12 @@ public class Nodo {
     public Nodo(String repre) {
         this.repre = repre;
     }
+
+    @Override
+    public String toString() {
+        return repre;
+    }
+    
+    
     
 }
