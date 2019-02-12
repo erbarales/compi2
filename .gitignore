@@ -21,7 +21,6 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
-/practica/target/
 /practica/generadojflex/
-/practica2ejercicio2/target/
-/evaluacion1/target/
+*/target/*
+*/target/**
