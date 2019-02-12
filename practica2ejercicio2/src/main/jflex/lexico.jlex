@@ -9,11 +9,14 @@ import generadocup.sym;
 %line
 %char
 NUMBER = [0-9]+
+PALABRA = [a-z]+
 %%
 
 <YYINITIAL> {NUMBER} { return new Symbol(sym.NUMBER, yytext()); }
+<YYINITIAL> {PALABRA} { return new Symbol(sym.PALABRA, yytext()); }
 
 <YYINITIAL> "+" { return new Symbol(sym.MAS); }
+<YYINITIAL> "=" { return new Symbol(sym.IGUAL); }
 <YYINITIAL> "*" { return new Symbol(sym.POR); }
 
 <YYINITIAL> " " {}

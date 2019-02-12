@@ -1,0 +1,4 @@
+Extraer(1,3,primer,examen,parcial,segundo,semestre,dos,mil,dieciocho)
+Extraer(5,1,primer,examen,parcial,segundo,semestre,dos,mil,dieciocho)
+Extraer(-1,6,esta,es,una,entrada,con,error,de,indice,inicial)
+Extraer(7,4,esta,es,una,entrada,con,error,de,indice,final)

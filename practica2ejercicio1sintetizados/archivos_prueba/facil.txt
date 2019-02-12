@@ -1,0 +1,1 @@
+Extraer(1,3,primer,examen,parcial)

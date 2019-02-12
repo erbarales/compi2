@@ -1,0 +1,35 @@
+import java_cup.runtime.*;
+import ant.com.gt.*;
+
+parser code {:
+    
+    
+
+:}
+terminal EXTRAER, PARA, PARC, COMA;
+
+terminal String NUMBER, WORD;
+
+non terminal S, L, B;
+non terminal Lista E;
+
+S ::= L
+    ;
+
+L ::= L B
+   | B
+   ;
+
+B ::= E:e PARC {: e.mostrarResultado(); :}
+    ;
+
+E ::= E:e1 COMA WORD:palabra {: e1.getLista().add(palabra); RESULT = e1; :}
+   | EXTRAER PARA NUMBER:inicio COMA NUMBER:cuantos COMA WORD:palabra 
+        {:  
+            Lista lista = new Lista(); 
+            lista.getLista().add(palabra); 
+            lista.setInicio( Integer.valueOf(inicio) ); 
+            lista.setCuantos( Integer.valueOf(cuantos) ); 
+            RESULT = lista;
+        :}
+   ;

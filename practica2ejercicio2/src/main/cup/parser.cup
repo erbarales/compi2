@@ -5,19 +5,22 @@ parser code {:
     
 
 :}
-terminal MAS, POR;
+terminal MAS, POR, IGUAL;
 
-terminal String NUMBER;
+terminal String NUMBER, PALABRA;
 
-non terminal S;
+non terminal S, ASIG;
 
 non terminal Nodo E;
 
 precedence left MAS;
 precedence left POR;
 
-S ::= E
+S ::= ASIG
     ;
+
+ASIG ::= PALABRA IGUAL E
+   ;
 
 E ::= E MAS E
    | E POR E

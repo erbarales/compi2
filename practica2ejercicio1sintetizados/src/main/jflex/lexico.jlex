@@ -1,0 +1,24 @@
+package generadojflex;
+
+import java_cup.runtime.Symbol;
+import generadocup.sym;
+
+%%  
+%cup
+%public
+%line
+%char
+NUMBER = (-)?[0-9]+
+WORD = [a-z]+
+%%
+
+<YYINITIAL> {NUMBER} { return new Symbol(sym.NUMBER, yytext()); }
+<YYINITIAL> {WORD} { return new Symbol(sym.WORD, yytext()); }
+
+<YYINITIAL> "Extraer" { return new Symbol(sym.EXTRAER); }
+<YYINITIAL> "," { return new Symbol(sym.COMA); }
+<YYINITIAL> "(" { return new Symbol(sym.PARA); }
+<YYINITIAL> ")" { return new Symbol(sym.PARC); }
+
+<YYINITIAL> " " {}
+<YYINITIAL>  [\t\r\n\f] {}
