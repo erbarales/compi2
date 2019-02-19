@@ -5,9 +5,7 @@
  */
 package ant.com.gt;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,16 +25,22 @@ public class TablaSimbolos {
         this.mapa = new HashMap();
     }
     
-    public void agregar(Variable variable) {
+    public void agregar(Variable variable) {        
+        logger.debug("Agregando " + variable);
         mapa.put(variable.nombre, variable);
     }
     
     public Variable buscar(String nombre) {
+        logger.debug("Buscando " + nombre);
         return mapa.get("nombre");
     }
     
     public void imprimir(Variable variable) {
-        logger.info(variable.toString());
+        if (variable == null) {
+            logger.debug("Variable nula");
+            return;
+        }
+        logger.info(variable.valor.toString());
     }
         
 }

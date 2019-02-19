@@ -36,7 +36,7 @@ TIPO ::= INT  {: RESULT = Tipo.INT; :}
      | DOUBLE {: RESULT = Tipo.DOUBLE; :}
      ;
 
-IMPRIMIR_STM ::= IMPRIMIR PARA EXPRESION:var PARC 
+IMPRIMIR_STM ::= IMPRIMIR PARA EXPRESION:var PARC {: tabla.imprimir(var); :}
     ;
 
 EXPRESION ::= EXPRESION:exp1 MAS EXPRESION:exp2 {: RESULT = new Variable( Tipo.INT, "temp", Integer.valueOf("1") ); :}

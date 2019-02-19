@@ -25,9 +25,9 @@ public class Variable {
 
     @Override
     public String toString() {
-        return valor.toString();
-    }        
-
+        return "Variable{" + "tipo=" + tipo + ", nombre=" + nombre + ", valor=" + valor + '}';
+    }    
+    
     @Override
     public int hashCode() {
         int hash = 7;
