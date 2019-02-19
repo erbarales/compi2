@@ -28,11 +28,14 @@ public class TablaSimbolos {
     public void agregar(Variable variable) {        
         logger.debug("Agregando " + variable);
         mapa.put(variable.nombre, variable);
+        logger.debug(" -> " + mapa);
     }
     
     public Variable buscar(String nombre) {
         logger.debug("Buscando " + nombre);
-        return mapa.get("nombre");
+        Variable encontrado = mapa.get(nombre);
+        logger.debug("Encontrado " + encontrado);
+        return encontrado;
     }
     
     public void imprimir(Variable variable) {
