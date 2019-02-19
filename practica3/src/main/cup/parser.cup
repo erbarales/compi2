@@ -1,0 +1,49 @@
+import java_cup.runtime.*;
+import ant.com.gt.*;
+
+parser code {:    
+
+    TablaSimbolos tabla = new TablaSimbolos();
+
+:}
+terminal PARA, PARC, PUNTOCOMA, MAS, MENOS, POR, DIVIDIDO, IGUAL;
+terminal IMPRIMIR, INT, DOUBLE;
+
+terminal String NUMBER, WORD;
+
+non terminal S, STMS, STM, DECLARA_STM, IMPRIMIR_STM;
+non terminal Tipo TIPO;
+non terminal Variable EXPRESION;
+
+precedence left POR, DIVIDIDO;
+precedence left MAS, MENOS;
+
+S ::= STMS
+    ;
+
+STMS ::= STMS STM PUNTOCOMA
+    | STM PUNTOCOMA
+    ;
+
+STM ::= DECLARA_STM
+    | IMPRIMIR_STM
+    ;
+
+DECLARA_STM ::= TIPO:tipo WORD:id IGUAL EXPRESION:exp {: tabla.agregar( new Variable(tipo, id, exp.valor) ); :}
+    ;
+
+TIPO ::= INT  {: RESULT = Tipo.INT; :}
+     | DOUBLE {: RESULT = Tipo.DOUBLE; :}
+     ;
+
+IMPRIMIR_STM ::= IMPRIMIR PARA EXPRESION:var PARC 
+    ;
+
+EXPRESION ::= EXPRESION:exp1 MAS EXPRESION:exp2 {: RESULT = new Variable( Tipo.INT, "temp", Integer.valueOf("1") ); :}
+    | EXPRESION:exp1 MENOS EXPRESION:exp2 {: RESULT = new Variable( Tipo.INT, "temp", Integer.valueOf("1") ); :}
+    | EXPRESION:exp1 POR EXPRESION:exp2 {: RESULT = new Variable( Tipo.INT, "temp", Integer.valueOf("1") ); :}
+    | EXPRESION:exp1 DIVIDIDO EXPRESION:exp2 {: new Variable( Tipo.INT, "temp", Integer.valueOf("1") ); :}
+    | PARA EXPRESION:exp PARC {: RESULT = exp; :}
+    | NUMBER:number  {: RESULT = new Variable( Tipo.INT, "temp", Integer.valueOf(number) ); :}
+    | WORD:id {: RESULT = tabla.buscar(id); :}
+   ;

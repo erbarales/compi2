@@ -1,0 +1,32 @@
+package generadojflex;
+
+import java_cup.runtime.Symbol;
+import generadocup.sym;
+
+%%  
+%cup
+%public
+%line
+%char
+NUMBER = (-)?[0-9]+
+WORD = [a-z]+
+%%
+
+<YYINITIAL> "double"   { return new Symbol(sym.DOUBLE);   }
+<YYINITIAL> "int"      { return new Symbol(sym.INT);      }
+<YYINITIAL> "Imprimir" { return new Symbol(sym.IMPRIMIR); }
+
+<YYINITIAL> {NUMBER} { return new Symbol(sym.NUMBER, yytext()); }
+<YYINITIAL> {WORD}   { return new Symbol(sym.WORD, yytext());   }
+
+<YYINITIAL> "+" { return new Symbol(sym.MAS); }
+<YYINITIAL> "-" { return new Symbol(sym.MENOS); }
+<YYINITIAL> "/" { return new Symbol(sym.DIVIDIDO); }
+<YYINITIAL> "*" { return new Symbol(sym.POR); }
+<YYINITIAL> "=" { return new Symbol(sym.IGUAL); }
+<YYINITIAL> ";" { return new Symbol(sym.PUNTOCOMA); }
+<YYINITIAL> "(" { return new Symbol(sym.PARA); }
+<YYINITIAL> ")" { return new Symbol(sym.PARC); }
+
+<YYINITIAL> " " {}
+<YYINITIAL>  [\t\r\n\f] {}

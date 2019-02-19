@@ -1,0 +1,6 @@
+int x = 4+2*3;
+double y = x/2*3;
+Imprimir(y);
+Imprimir(x*a);
+Imprimir((x*y)/(10-x));
+Imprimir(x*y/4);
