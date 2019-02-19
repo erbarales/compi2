@@ -10,5 +10,5 @@ package ant.com.gt;
  * @author eddyb
  */
 public enum Tipo {
-    INT, DOUBLE
+    INT, DOUBLE, ERROR
 }

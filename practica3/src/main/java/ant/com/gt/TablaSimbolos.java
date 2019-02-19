@@ -33,17 +33,45 @@ public class TablaSimbolos {
     
     public Variable buscar(String nombre) {
         logger.debug("Buscando " + nombre);
-        Variable encontrado = mapa.get(nombre);
+        Variable encontrado = mapa.get(nombre);        
+        if (encontrado == null) {
+            encontrado = new Variable(Tipo.ERROR, "Error no existe variable "  + nombre, null);
+        }
         logger.debug("Encontrado " + encontrado);
         return encontrado;
     }
     
     public void imprimir(Variable variable) {
-        if (variable == null) {
-            logger.debug("Variable nula");
-            return;
-        }
-        logger.info(variable.valor.toString());
+        if (variable.tipo == Tipo.ERROR) {
+            logger.info(variable.nombre);
+        } else {
+            logger.info(variable.valor.toString());
+        }        
     }
+    
+    public Variable sumar(Variable v1, Variable v2) {
+        if (v1.tipo == Tipo.ERROR) return v1;
+        if (v2.tipo == Tipo.ERROR) return v2;
+        return new Variable(Tipo.INT, "temp", v1.valor.doubleValue() + v2.valor.doubleValue());
+    }
+    
+    public Variable restar(Variable v1, Variable v2) {
+        if (v1.tipo == Tipo.ERROR) return v1;
+        if (v2.tipo == Tipo.ERROR) return v2;        
+        return new Variable(Tipo.INT, "temp", v1.valor.doubleValue() - v2.valor.doubleValue());
+    }
+
+    public Variable multiplicar(Variable v1, Variable v2) {
+        if (v1.tipo == Tipo.ERROR) return v1;
+        if (v2.tipo == Tipo.ERROR) return v2;        
+        return new Variable(Tipo.INT, "temp", v1.valor.doubleValue() * v2.valor.doubleValue());
+    }
+
+    public Variable dividir(Variable v1, Variable v2) {
+        if (v1.tipo == Tipo.ERROR) return v1;
+        if (v2.tipo == Tipo.ERROR) return v2;
+        if (v2.valor.doubleValue() == 0) return new Variable(Tipo.ERROR, "Error division por cero", null);      
+        return new Variable(Tipo.INT, "temp", v1.valor.doubleValue() / v2.valor.doubleValue());
+    }    
         
 }
