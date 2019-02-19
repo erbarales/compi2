@@ -52,9 +52,9 @@ public class TablaSimbolos {
     public Variable sumar(Variable v1, Variable v2) {
         if (v1.tipo == Tipo.ERROR) return v1;
         if (v2.tipo == Tipo.ERROR) return v2;
-        double val1 = v1.valor.doubleValue();
-        double val2 = val1 + v2.valor.doubleValue();
-        double resultado = val2;
+        Number val1 = v1.valor.doubleValue();
+        Number val2 = v2.valor.doubleValue();
+        Number resultado = (Integer) val1 + (Integer) val2;
         return new Variable(Tipo.INT, "temp", resultado);
     }
     
