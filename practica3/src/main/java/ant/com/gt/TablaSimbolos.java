@@ -52,26 +52,38 @@ public class TablaSimbolos {
     public Variable sumar(Variable v1, Variable v2) {
         if (v1.tipo == Tipo.ERROR) return v1;
         if (v2.tipo == Tipo.ERROR) return v2;
-        return new Variable(Tipo.INT, "temp", v1.valor.doubleValue() + v2.valor.doubleValue());
+        double val1 = v1.valor.doubleValue();
+        double val2 = val1 + v2.valor.doubleValue();
+        double resultado = val2;
+        return new Variable(Tipo.INT, "temp", resultado);
     }
     
     public Variable restar(Variable v1, Variable v2) {
         if (v1.tipo == Tipo.ERROR) return v1;
         if (v2.tipo == Tipo.ERROR) return v2;        
-        return new Variable(Tipo.INT, "temp", v1.valor.doubleValue() - v2.valor.doubleValue());
+        double val1 = v1.valor.doubleValue();
+        double val2 = v2.valor.doubleValue();
+        double resultado = val1 - val2;
+        return new Variable(Tipo.INT, "temp", resultado);
     }
 
     public Variable multiplicar(Variable v1, Variable v2) {
         if (v1.tipo == Tipo.ERROR) return v1;
         if (v2.tipo == Tipo.ERROR) return v2;        
-        return new Variable(Tipo.INT, "temp", v1.valor.doubleValue() * v2.valor.doubleValue());
+        double val1 = v1.valor.doubleValue();
+        double val2 = v2.valor.doubleValue();
+        double resultado = val1 * val2;
+        return new Variable(Tipo.INT, "temp", resultado);
     }
 
     public Variable dividir(Variable v1, Variable v2) {
         if (v1.tipo == Tipo.ERROR) return v1;
         if (v2.tipo == Tipo.ERROR) return v2;
-        if (v2.valor.doubleValue() == 0) return new Variable(Tipo.ERROR, "Error division por cero", null);      
-        return new Variable(Tipo.INT, "temp", v1.valor.doubleValue() / v2.valor.doubleValue());
+        double val2 = v2.valor.doubleValue();      
+        if (val2 == 0) return new Variable(Tipo.ERROR, "Error division por cero", null);      
+        double val1 = v1.valor.doubleValue();
+        double resultado = val1 / val2;
+        return new Variable(Tipo.INT, "temp", resultado);
     }    
         
 }
