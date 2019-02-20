@@ -20,8 +20,7 @@ public class MathHelper {
         }
         Number val1 = v1.valor;
         Number val2 = v2.valor;
-        Number resultado = null;
-        resultado = val1.doubleValue() + val2.doubleValue();
+        Number resultado = val1.doubleValue() + val2.doubleValue();
         return new Variable(Tipo.DOUBLE, "temp", resultado);
     }
 
@@ -34,8 +33,7 @@ public class MathHelper {
         }
         Number val1 = v1.valor;
         Number val2 = v2.valor;
-        Number resultado = null;
-        resultado = val1.doubleValue() - val2.doubleValue();
+        Number resultado = val1.doubleValue() - val2.doubleValue();
         return new Variable(Tipo.DOUBLE, "temp", resultado);
     }
 
@@ -48,8 +46,7 @@ public class MathHelper {
         }
         Number val1 = v1.valor;
         Number val2 = v2.valor;
-        Number resultado = null;
-        resultado = val1.doubleValue() * val2.doubleValue();
+        Number resultado = val1.doubleValue() * val2.doubleValue();
         return new Variable(Tipo.DOUBLE, "temp", resultado);
     }
 
@@ -68,8 +65,7 @@ public class MathHelper {
         }
         Number val1 = v1.valor;
         Number val2 = v2.valor;
-        Number resultado = null;
-        resultado = val1.doubleValue() / val2.doubleValue();
+        Number resultado = val1.doubleValue() / val2.doubleValue();
         return new Variable(Tipo.DOUBLE, "temp", resultado);
     }
 
