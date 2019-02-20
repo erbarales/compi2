@@ -21,7 +21,7 @@ public class Variable {
         this.tipo = tipo;
         this.nombre = nombre;
         this.valor = valor;
-    }        
+    }
 
     @Override
     public String toString() {

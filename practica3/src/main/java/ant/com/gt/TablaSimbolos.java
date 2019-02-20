@@ -35,7 +35,9 @@ public class TablaSimbolos {
         logger.debug("Buscando " + nombre);
         Variable encontrado = mapa.get(nombre);        
         if (encontrado == null) {
-            encontrado = new Variable(Tipo.ERROR, "Error no existe variable "  + nombre, null);
+            encontrado = new Variable(Tipo.ERROR, 
+                    "Error no existe variable "  + nombre, 
+                    null);
         }
         logger.debug("Encontrado " + encontrado);
         return encontrado;
@@ -47,43 +49,6 @@ public class TablaSimbolos {
         } else {
             logger.info(variable.valor.toString());
         }        
-    }
-    
-    public Variable sumar(Variable v1, Variable v2) {
-        if (v1.tipo == Tipo.ERROR) return v1;
-        if (v2.tipo == Tipo.ERROR) return v2;
-        Number val1 = v1.valor.doubleValue();
-        Number val2 = v2.valor.doubleValue();
-        Number resultado = (Integer) val1 + (Integer) val2;
-        return new Variable(Tipo.INT, "temp", resultado);
-    }
-    
-    public Variable restar(Variable v1, Variable v2) {
-        if (v1.tipo == Tipo.ERROR) return v1;
-        if (v2.tipo == Tipo.ERROR) return v2;        
-        double val1 = v1.valor.doubleValue();
-        double val2 = v2.valor.doubleValue();
-        double resultado = val1 - val2;
-        return new Variable(Tipo.INT, "temp", resultado);
-    }
-
-    public Variable multiplicar(Variable v1, Variable v2) {
-        if (v1.tipo == Tipo.ERROR) return v1;
-        if (v2.tipo == Tipo.ERROR) return v2;        
-        double val1 = v1.valor.doubleValue();
-        double val2 = v2.valor.doubleValue();
-        double resultado = val1 * val2;
-        return new Variable(Tipo.INT, "temp", resultado);
-    }
-
-    public Variable dividir(Variable v1, Variable v2) {
-        if (v1.tipo == Tipo.ERROR) return v1;
-        if (v2.tipo == Tipo.ERROR) return v2;
-        double val2 = v2.valor.doubleValue();      
-        if (val2 == 0) return new Variable(Tipo.ERROR, "Error division por cero", null);      
-        double val1 = v1.valor.doubleValue();
-        double resultado = val1 / val2;
-        return new Variable(Tipo.INT, "temp", resultado);
-    }    
+    }        
         
 }

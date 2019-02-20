@@ -4,6 +4,7 @@ import ant.com.gt.*;
 parser code {:    
 
     TablaSimbolos tabla;
+    MathHelper helper = new MathHelper();
 
 :}
 terminal PARA, PARC, PUNTOCOMA, MAS, MENOS, POR, DIVIDIDO, IGUAL;
@@ -39,10 +40,10 @@ TIPO ::= INT  {: RESULT = Tipo.INT; :}
 IMPRIMIR_STM ::= IMPRIMIR PARA EXPRESION:var PARC {: tabla.imprimir(var); :}
     ;
 
-EXPRESION ::= EXPRESION:exp1 MAS EXPRESION:exp2 {: RESULT = tabla.sumar(exp1, exp2); :}
-    | EXPRESION:exp1 MENOS EXPRESION:exp2 {: RESULT = tabla.restar(exp1, exp2); :}
-    | EXPRESION:exp1 POR EXPRESION:exp2 {: RESULT = tabla.multiplicar(exp1, exp2); :}
-    | EXPRESION:exp1 DIVIDIDO EXPRESION:exp2 {: RESULT = tabla.dividir(exp1, exp2); :}
+EXPRESION ::= EXPRESION:exp1 MAS EXPRESION:exp2 {: RESULT = helper.sumar(exp1, exp2); :}
+    | EXPRESION:exp1 MENOS EXPRESION:exp2 {: RESULT = helper.restar(exp1, exp2); :}
+    | EXPRESION:exp1 POR EXPRESION:exp2 {: RESULT = helper.multiplicar(exp1, exp2); :}
+    | EXPRESION:exp1 DIVIDIDO EXPRESION:exp2 {: RESULT = helper.dividir(exp1, exp2); :}
     | PARA EXPRESION:exp PARC {: RESULT = exp; :}
     | NUMBER:number  {: RESULT = new Variable( Tipo.INT, "temp", Integer.valueOf(number) ); :}
     | WORD:id {: RESULT = tabla.buscar(id); :}
